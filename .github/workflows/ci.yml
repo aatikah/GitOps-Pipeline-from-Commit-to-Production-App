@@ -78,7 +78,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f Dockerfile app
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f app/Dockerfile
 
       - name: Push image to ECR
         run: |
