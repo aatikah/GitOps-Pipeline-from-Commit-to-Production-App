@@ -60,7 +60,7 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Show GitHub identity context
+      - name: Show GitHub Identity Context
         run: |
           printf 'repository=%s\nref=%s\nevent=%s\nrepository_id=%s\nowner_id=%s\n' \
             "$GITHUB_REPOSITORY" "$GITHUB_REF" "$GITHUB_EVENT_NAME" \
