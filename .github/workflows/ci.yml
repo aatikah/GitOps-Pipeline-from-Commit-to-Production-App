@@ -60,11 +60,12 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Show GitHub Identity Context
-        run: |
-          printf 'repository=%s\nref=%s\nevent=%s\nrepository_id=%s\nowner_id=%s\n' \
-            "$GITHUB_REPOSITORY" "$GITHUB_REF" "$GITHUB_EVENT_NAME" \
-            "$GITHUB_REPOSITORY_ID" "$GITHUB_REPOSITORY_OWNER_ID"
+      # - name: Show GitHub Identity Context
+      #   run: |
+      #     printf 'repository=%s\nref=%s\nevent=%s\nrepository_id=%s\nowner_id=%s\n' \
+      #       "$GITHUB_REPOSITORY" "$GITHUB_REF" "$GITHUB_EVENT_NAME" \
+      #       "$GITHUB_REPOSITORY_ID" "$GITHUB_REPOSITORY_OWNER_ID"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -77,7 +78,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f app/Dockerfile app
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f Dockerfile app
 
       - name: Push image to ECR
         run: |
