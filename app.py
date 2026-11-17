@@ -10,7 +10,7 @@ def home():
         "status": "ok",
         "version": os.getenv("APP_VERSION", "1.0.0"),
         "environment": os.getenv("ENVIRONMENT", "staging"),
-        "message": "GitOps deployment is now healthy"
+        "message": "GitOps deployment is healthy"
     })
 
 
