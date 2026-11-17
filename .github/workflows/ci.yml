@@ -77,8 +77,6 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build image
-        # run: |
-        #   docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f Dockerfile .
         run: |
           echo "Building image: $IMAGE_NAME:$IMAGE_TAG"
 
@@ -92,9 +90,6 @@ jobs:
             -f Dockerfile .
 
       - name: Push image to ECR
-        # run: |
-        #   docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
-        #   docker push ${{ env.IMAGE_NAME }}:latest
         run: |
           docker push "$IMAGE_NAME:$IMAGE_TAG"
 
