@@ -15,6 +15,7 @@ permissions:
 env:
   AWS_REGION: ${{ vars.AWS_REGION }}
   IMAGE_NAME: ${{ vars.ECR_REPOSITORY }}
+  IMAGE_TAG: ${{ github.sha }}
   TARGET_ENVIRONMENT: staging
 
 jobs:
@@ -79,6 +80,13 @@ jobs:
         # run: |
         #   docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest -f Dockerfile .
         run: |
+          echo "Building image: $IMAGE_NAME:$IMAGE_TAG"
+
+          if [ -z "$IMAGE_NAME" ] || [ -z "$IMAGE_TAG" ]; then
+            echo "ERROR: IMAGE_NAME or IMAGE_TAG is empty"
+            exit 1
+          fi
+
           docker build \
             -t "$IMAGE_NAME:$IMAGE_TAG" \
             -f Dockerfile .
